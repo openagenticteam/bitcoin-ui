@@ -1,4 +1,4 @@
-import { type ButtonHTMLAttributes, type ReactNode } from 'react'
+import { type ButtonHTMLAttributes } from 'react'
 import { type BaseComponentProps, type LoadingState, type Size, type Variant } from '@/types/common'
 
 /**
@@ -17,7 +17,7 @@ export interface ButtonProps
   /** Whether the button should take the full width of its container */
   fullWidth?: boolean
   /** Icon to display before the button text */
-  startIcon?: ReactNode
+  startIcon?: React.ReactNode
   /** Icon to display after the button text */
-  endIcon?: ReactNode
+  endIcon?: React.ReactNode
 }
