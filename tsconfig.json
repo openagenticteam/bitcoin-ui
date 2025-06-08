@@ -1,0 +1,8 @@
+{
+  "extends": "tsconfig-vite-node/tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "bitcoin-ui": ["./src"]
+    }
+  }
+}
