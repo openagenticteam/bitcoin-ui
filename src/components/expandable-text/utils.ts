@@ -3,7 +3,7 @@ import { type TextType } from './types'
 /**
  * Truncates text to show first and last characters with ellipsis in middle
  */
-export function truncateText(text: string, startChars: number = 6, endChars: number = 6): string {
+export function truncateText(text: string, startChars: number = 6, endChars: number = 7): string {
   if (text.length <= startChars + endChars + 3) {
     return text
   }

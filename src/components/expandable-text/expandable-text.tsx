@@ -111,7 +111,6 @@ export const ExpandableText: React.FC<ExpandableTextProps> = ({
         <span
           id={textId}
           className="expandable-text__text"
-          aria-label={`${label}: ${isExpanded ? 'full text' : 'truncated text'}`}
           data-testid={testId ? `${testId}-text` : 'expandable-text-text'}
         >
           {displayText}
