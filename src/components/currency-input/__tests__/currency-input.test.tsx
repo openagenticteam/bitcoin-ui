@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen, fireEvent, act } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { CurrencyInput, type Currency } from '../currency-input'
 
@@ -18,21 +18,25 @@ describe('CurrencyInput', () => {
   }
 
   it('accepts input and formats value correctly for USD', () => {
-    render(<CurrencyInput label="Amount\" currency="USD\" locale="US" />)
+    render(<CurrencyInput label="Amount" currency="USD" locale="US" />)
     const input = screen.getByLabelText('Amount')
     
-    fireEvent.change(input, { target: { value: '1234.56' } })
-    fireEvent.blur(input)
+    await act(async () => {
+      fireEvent.change(input, { target: { value: '1234.56' } })
+      fireEvent.blur(input)
+    })
     
     expect(input).toHaveDisplayValue('1,234.56')
   })
 
   it('handles locale-specific formatting for EUR', () => {
-    render(<CurrencyInput label="Amount\" currency="EUR\" locale="EU" />)
+    render(<CurrencyInput label="Amount" currency="EUR" locale="EU" />)
     const input = screen.getByLabelText('Amount')
     
-    fireEvent.change(input, { target: { value: '1234,56' } })
-    fireEvent.blur(input)
+    await act(async () => {
+      fireEvent.change(input, { target: { value: '1234,56' } })
+      fireEvent.blur(input)
+    })
     
     expect(input).toHaveDisplayValue('1.234,56')
   })
@@ -63,14 +67,14 @@ describe('CurrencyInput', () => {
   })
 
   it('supports uncontrolled usage with defaultValue', () => {
-    render(<CurrencyInput defaultValue="50\" currency="USD\" locale="US" />)
+    render(<CurrencyInput defaultValue="50" currency="USD" locale="US" />)
     const input = screen.getByDisplayValue('50')
     expect(input).toBeInTheDocument()
   })
 
   it('validates BTC input with up to 8 decimal places', () => {
     const mockOnChange = jest.fn()
-    render(<CurrencyInput currency="BTC\" onChange={mockOnChange} />)
+    render(<CurrencyInput currency="BTC" onChange={mockOnChange} />)
     const input = screen.getByTestId('currency-input')
     
     // Valid BTC amount
@@ -102,7 +106,7 @@ describe('CurrencyInput', () => {
 
   it('prevents invalid characters', () => {
     const mockOnChange = jest.fn()
-    render(<CurrencyInput currency="USD\" onChange={mockOnChange} />)
+    render(<CurrencyInput currency="USD" onChange={mockOnChange} />)
     const input = screen.getByTestId('currency-input')
     
     // Try to input letters
@@ -139,10 +143,14 @@ describe('CurrencyInput', () => {
     
     const input = screen.getByTestId('currency-input')
     
-    await user.click(input)
+    await act(async () => {
+      await user.click(input)
+    })
     expect(mockOnFocus).toHaveBeenCalled()
     
-    await user.tab()
+    await act(async () => {
+      await user.tab()
+    })
     expect(mockOnBlur).toHaveBeenCalled()
   })
 
@@ -165,7 +173,7 @@ describe('CurrencyInput', () => {
   })
 
   it('applies custom className', () => {
-    render(<CurrencyInput currency="USD\" className="custom-class" />)
+    render(<CurrencyInput currency="USD" className="custom-class" />)
     const wrapper = screen.getByTestId('currency-input-wrapper')
     expect(wrapper).toHaveClass('custom-class')
   })
@@ -182,7 +190,7 @@ describe('CurrencyInput', () => {
   })
 
   it('uses custom placeholder when provided', () => {
-    render(<CurrencyInput currency="USD\" placeholder="Enter amount" />)
+    render(<CurrencyInput currency="USD" placeholder="Enter amount" />)
     expect(screen.getByTestId('currency-input')).toHaveAttribute('placeholder', 'Enter amount')
   })
 
@@ -192,8 +200,8 @@ describe('CurrencyInput', () => {
   })
 
   it('handles autoFocus prop', () => {
-    render(<CurrencyInput currency="USD\" autoFocus={false} />)
-    expect(screen.getByTestId('currency-input')).toHaveAttribute('autoFocus', '')
+    render(<CurrencyInput currency="USD" autoFocus={true} />)
+    expect(screen.getByTestId('currency-input')).toHaveAttribute('autoFocus')
   })
 
   it('passes through additional props', () => {
