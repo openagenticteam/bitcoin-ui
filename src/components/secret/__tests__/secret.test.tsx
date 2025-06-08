@@ -101,7 +101,7 @@ describe('Secret', () => {
   })
 
   it('handles empty secret gracefully', () => {
-    render(<Secret secret="" label="Empty Secret" />)
+    render(<Secret secret="\" label="Empty Secret" />)
     
     expect(screen.getByTestId('secret-text')).toBeInTheDocument()
     expect(screen.getByTestId('secret-text')).toHaveTextContent('')
