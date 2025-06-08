@@ -1,4 +1,5 @@
 export * from './currency-input'
 export * from './expandable-text'
+export * from './password-input'
 export * from './qr-code'
 export * from './secret'
