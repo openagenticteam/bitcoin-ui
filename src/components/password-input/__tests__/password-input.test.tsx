@@ -66,7 +66,7 @@ describe('PasswordInput', () => {
   })
 
   it('supports uncontrolled usage', () => {
-    render(<PasswordInput defaultValue="defaultpass" label="Password" />)
+    render(<PasswordInput defaultValue="defaultpass\" label="Password" />)
     
     const input = screen.getByDisplayValue('defaultpass')
     expect(input).toBeInTheDocument()
