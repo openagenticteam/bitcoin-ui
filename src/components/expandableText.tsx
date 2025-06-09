@@ -1,3 +1,4 @@
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 import React, { useState } from "react"
 import { CopyToClipboard } from "react-copy-to-clipboard-ts"
 
@@ -68,16 +69,17 @@ export const ExpandableText: React.FC<ExpandableTextProps> = ({
           {displayText}
         </div>
 
-        {/* Screen reader only description - moved to end to prevent visual interference */}
-        <div
-          id={`expandable-description-${ariaDescriptionLabel}`}
-          className="btc-sr-only"
-          aria-live="polite"
-        >
-          {label}
-          :
-          {isExpanded ? text : displayText}
-        </div>
+        {/* Screen reader only description - using Radix UI's VisuallyHidden component */}
+        <VisuallyHidden asChild>
+          <div
+            id={`expandable-description-${ariaDescriptionLabel}`}
+            aria-live="polite"
+          >
+            {label}
+            :
+            {isExpanded ? text : displayText}
+          </div>
+        </VisuallyHidden>
 
         {shouldTruncate && (
           <button

@@ -1,3 +1,4 @@
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 import React, { forwardRef, useCallback, useEffect, useState } from "react"
 
 import type { Currency, Locale } from "./utils"
@@ -109,13 +110,14 @@ export const CurrencyInput = forwardRef<HTMLInputElement, CurrencyInputProps>(
         aria-label={label ? `${label} field` : `${currency} input field`}
       >
         {label && (
-          <label
-            className="btc-sr-only"
-            htmlFor={`currency-input-${currency}`}
-            aria-live="polite"
-          >
-            {label}
-          </label>
+          <VisuallyHidden asChild>
+            <label
+              htmlFor={`currency-input-${currency}`}
+              aria-live="polite"
+            >
+              {label}
+            </label>
+          </VisuallyHidden>
         )}
 
         <span className="btc-currency__symbol" aria-hidden="true">
@@ -138,16 +140,17 @@ export const CurrencyInput = forwardRef<HTMLInputElement, CurrencyInputProps>(
         />
 
         {ariaDescriptionLabel && (
-          <span
-            id={`currency-description-${ariaDescriptionLabel}`}
-            className="btc-sr-only"
-            aria-live="polite"
-          >
-            {label}
-            {" "}
-            in
-            {currency}
-          </span>
+          <VisuallyHidden asChild>
+            <span
+              id={`currency-description-${ariaDescriptionLabel}`}
+              aria-live="polite"
+            >
+              {label}
+              {" "}
+              in
+              {currency}
+            </span>
+          </VisuallyHidden>
         )}
       </div>
     )

@@ -1,3 +1,4 @@
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 import React, { forwardRef, useState } from "react"
 
 import { EyeNoneIcon, EyeOpenIcon } from "./icons"
@@ -37,15 +38,16 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
         />
 
         {ariaDescriptionLabel && (
-          <span
-            id={`password-description-${ariaDescriptionLabel}`}
-            className="btc-sr-only"
-            aria-live="polite"
-          >
-            {label}
-            {" "}
-            {revealed ? "(visible)" : "(hidden)"}
-          </span>
+          <VisuallyHidden asChild>
+            <span
+              id={`password-description-${ariaDescriptionLabel}`}
+              aria-live="polite"
+            >
+              {label}
+              {" "}
+              {revealed ? "(visible)" : "(hidden)"}
+            </span>
+          </VisuallyHidden>
         )}
 
         <button

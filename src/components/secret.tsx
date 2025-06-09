@@ -1,3 +1,4 @@
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 import React, { useState } from "react"
 import { CopyToClipboard } from "react-copy-to-clipboard-ts"
 
@@ -62,13 +63,14 @@ export const Secret: React.FC<SecretProps> = ({
         >
           {value}
         </div>
-        <span
-          id={`secret-description-${ariaDescriptionLabel}`}
-          className="btc-sr-only"
-          aria-live="polite"
-        >
-          {revealed ? `${label}: ${secret}` : `${label} (hidden)`}
-        </span>
+        <VisuallyHidden asChild>
+          <span
+            id={`secret-description-${ariaDescriptionLabel}`}
+            aria-live="polite"
+          >
+            {revealed ? `${label}: ${secret}` : `${label} (hidden)`}
+          </span>
+        </VisuallyHidden>
       </div>
 
       <div className="btc-secret__controls">
