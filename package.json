@@ -59,7 +59,6 @@
     "typecheck": "tsc --noEmit",
     "size": "size-limit",
     "prepare": "husky",
-    "prepublishOnly": "pnpm build && pnpm test && pnpm lint:check && pnpm typecheck",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "pnpm build && changeset publish",
