@@ -1,5 +1,3 @@
-"use client"
-
 import type {
   ButtonProps as RawButtonProps,
 } from "@radix-ui/themes"

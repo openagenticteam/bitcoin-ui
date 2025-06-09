@@ -1,5 +1,3 @@
-"use client"
-
 import React, { forwardRef, useState } from "react"
 
 import { EyeNoneIcon, EyeOpenIcon } from "./icons"

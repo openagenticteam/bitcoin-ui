@@ -3,23 +3,29 @@
   
   # Bitcoin UI Components
 
-  Accessible React component library for Bitcoin applications. Built with TypeScript and designed following the [Bitcoin Design Guide](https://bitcoin.design/guide/) and [Bitcoin Universal Design Accessibility Standards](https://jason-me.github.io/bitcoin-universal-design/).
+  Modern, accessible React component library for Bitcoin applications. Built with TypeScript, featuring beautiful default styling with Inter font, and designed following the [Bitcoin Design Guide](https://bitcoin.design/guide/) and [Bitcoin Universal Design Accessibility Standards](https://jason-me.github.io/bitcoin-universal-design/).
 
-  [![Tests](https://img.shields.io/badge/tests-55%20passing-brightgreen)](src/__tests__)
+  [![npm version](https://img.shields.io/npm/v/bitcoin-ui.svg)](https://www.npmjs.com/package/bitcoin-ui)
+  [![Tests](https://img.shields.io/badge/tests-64%20passing-brightgreen)](src/__tests__)
   [![Components](https://img.shields.io/badge/components-5-blue)](#-components)
-  [![Storybook](https://img.shields.io/badge/storybook-live-ff4785)](http://localhost:6006)
+  [![Storybook](https://img.shields.io/badge/storybook-live-ff4785)](https://bitcoin-ui.github.io/bitcoin-ui)
+  [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+  **🌐 [Live Website & Documentation →](https://bitcoinui.org/)**
 </div>
 
 ## ✨ Features
 
-- 🔐 **Flexible** - Bring your own design system
-- ♿ **Fully Accessible** - WCAG compliant with screen reader support
+- 🎨 **Beautiful by Default** - Clean, modern styling with Inter font
+- ♿ **Fully Accessible** - WCAG 2.1 AA compliant with screen reader support
+- 🎯 **Minimal Dependencies** - Only requires React, Radix UI, react-copy-to-clipboard-ts, and qrcode.react
+- 🌙 **Dark Mode Ready** - Automatic dark mode support via CSS custom properties
 - 🌍 **Locale-Aware** - Support for US, EU number formatting
 - ₿ **Bitcoin-Specific** - Designed for Bitcoin applications
 - 📱 **Mobile-First** - Responsive and touch-friendly
 - 🔒 **Security-Focused** - Secure handling of sensitive data
-- 🧪 **Thoroughly Tested** - 55+ tests including accessibility & story tests
-- 📚 **Interactive Docs** - Explore components with Storybook
+- 🧪 **Thoroughly Tested** - 64+ tests including accessibility & story tests
+- 🚀 **Lightweight** - Minimal bundle size impact
 
 ## 📦 Installation
 
@@ -33,9 +39,11 @@ pnpm add bitcoin-ui
 
 ## 🎨 Interactive Examples
 
-**🚀 [View Live Components in Storybook →](http://localhost:6006)**
+**🚀 [View Live Components →](https://bitcoinui.org/playground)**
 
-Explore all components interactively with different props, styling examples, and live code:
+Explore all components interactively with different props, styling examples, and live code examples.
+
+For local development with Storybook:
 
 ```bash
 # Clone the repository
@@ -47,12 +55,7 @@ pnpm install
 pnpm storybook
 ```
 
-Then open [http://localhost:6006](http://localhost:6006) to see:
-- **Interactive component playground** with live prop controls
-- **Multiple styling examples** for each component
-- **Accessibility testing tools** built-in
-- **Copy-paste code examples** for implementation
-- **Real-time documentation** with TypeScript support
+Then open [http://localhost:6006](http://localhost:6006) for local development.
 
 ## 🚀 Quick Start
 
@@ -207,11 +210,44 @@ Locale-aware currency input with real-time formatting and validation.
 - **US**: `1,234.56` (comma thousands, dot decimal)
 - **EU**: `1.234,56` (dot thousands, comma decimal)
 
-## 🎨 Styling
+## 🎨 Styling & Customization
 
-All components are flexible by default. You can style them using:
+All components are flexible by default and come with beautiful styling using Inter font and modern design tokens.
 
-### CSS Classes
+### Default Styling
+
+Components include beautiful default styling that you can optionally use:
+
+```tsx
+// Import default styles (optional)
+import 'bitcoin-ui/styles.css';
+```
+
+### Custom Theming
+
+Override CSS custom properties to customize the design:
+
+```css
+:root {
+  /* Colors */
+  --btc-gray-50: #your-color;
+  --btc-gray-900: #your-color;
+  --btc-orange-500: #your-accent-color;
+  
+  /* Typography */
+  --btc-font-family: 'Your Font', sans-serif;
+  --btc-font-mono: 'Your Mono Font', monospace;
+  
+  /* Spacing */
+  --btc-space-4: 1.5rem;
+  
+  /* Border radius */
+  --btc-radius-lg: 0.75rem;
+}
+```
+
+### Component-Specific CSS Classes
+
 Each component exposes specific CSS classes for styling:
 
 ```css
@@ -242,6 +278,20 @@ Each component exposes specific CSS classes for styling:
 .currency-input__input { /* input field */ }
 ```
 
+### Dark Mode
+
+Components automatically support dark mode through CSS custom properties:
+
+```css
+@media (prefers-color-scheme: dark) {
+  :root {
+    --btc-gray-50: #111827;
+    --btc-gray-900: #f9fafb;
+    /* Colors are automatically inverted */
+  }
+}
+```
+
 ### Inline Styles
 Pass styles directly to components:
 
@@ -262,6 +312,77 @@ const StyledSecret = styled(Secret)`
   border-radius: 8px;
 `
 ```
+
+## 🔧 TypeScript Support
+
+Full TypeScript support with exported types:
+
+```tsx
+import type { 
+  SecretProps, 
+  PasswordInputProps, 
+  QRCodeProps,
+  ExpandableTextProps,
+  CurrencyInputProps,
+  Currency,
+  Locale 
+} from 'bitcoin-ui'
+```
+
+## 🚀 Advanced Usage
+
+### Custom Toast Notifications
+
+```tsx
+import { showToast } from 'bitcoin-ui';
+
+// Success notification
+showToast('Bitcoin address copied!');
+
+// Error notification
+showToast('Failed to copy address', { type: 'error' });
+
+// Custom duration
+showToast('Copied!', { duration: 5000 });
+```
+
+### Utility Functions
+
+```tsx
+import { 
+  truncateText, 
+  isValidAmount,
+  formatCurrencyValue 
+} from 'bitcoin-ui';
+
+// Truncate long text
+const short = truncateText('very long text here', 10, 5);
+
+// Validate currency amounts
+const isValid = isValidAmount('123.45', 'USD');
+
+// Format currency values
+const formatted = formatCurrencyValue('1234.56', 'US');
+```
+
+## 📱 Mobile Considerations
+
+All components are designed mobile-first with:
+
+- Touch-friendly interactive areas (minimum 44px)
+- Responsive typography and spacing
+- Optimized for small screens
+- Proper viewport handling for iOS Safari
+
+## 🔒 Security Best Practices
+
+When handling sensitive Bitcoin data:
+
+1. **Use HTTPS** - Always serve over secure connections
+2. **Clear sensitive data** - Clear form values when appropriate
+3. **Validate inputs** - Use provided validation utilities
+4. **Secure clipboard** - Components handle clipboard securely
+5. **Screen recording protection** - Consider `user-select: none` for sensitive data
 
 ## 🧪 Development
 
@@ -309,7 +430,11 @@ pnpm dev
 ```
 
 ### Viewing Components
-The best way to explore and test components is through Storybook:
+The best way to explore and test components is through our live website:
+
+**🌐 [Visit bitcoinui.org →](https://bitcoinui.org/)**
+
+For local development with Storybook:
 
 ```bash
 # Start the interactive component playground
@@ -322,8 +447,6 @@ Then open [http://localhost:6006](http://localhost:6006) to:
 - **Copy implementation code** for your projects
 - **Test accessibility** features and keyboard navigation
 - **Experiment with styling** approaches for design-flexible components
-
-The example page (`src/example.tsx`) demonstrates all components with various configurations, but Storybook provides a much better interactive experience.
 
 ## ♿ Accessibility
 
@@ -400,12 +523,16 @@ When contributing new components:
 
 ## 📄 License
 
-MIT © [Bitcoin UI Kit](LICENSE)
+MIT © [Bitcoin UI](LICENSE)
 
 ## 🔗 Links
 
-- **[Interactive Component Playground (Storybook)](http://localhost:6006)** - Live examples and documentation
+- **🌐 [Live Website & Documentation](https://bitcoinui.org/)** - Interactive examples and complete docs
+- **🎮 [Component Playground](https://bitcoinui.org/playground)** - Try components live
+- **📚 [Getting Started Guide](https://bitcoinui.org/getting-started)** - Quick start tutorial
+- **🧩 [All Components](https://bitcoinui.org/components)** - Complete component library
 - [Bitcoin Design Guide](https://bitcoin.design/guide/)
 - [Bitcoin Universal Design Accessibility Standards](https://jason-me.github.io/bitcoin-universal-design/)
+- [GitHub Repository](https://github.com/bitcoin-ui/bitcoin-ui)
 - [Component Examples](src/example.tsx)
 - [Contributing Guidelines](CONTRIBUTING.md)

@@ -10,9 +10,6 @@ export default defineConfig({
   treeshake: true,
   minify: true,
   external: ["react", "react-dom", "qrcode.react"],
-  banner: {
-    js: "use client;",
-  },
   esbuildOptions(options) {
     options.jsx = "automatic"
   },
