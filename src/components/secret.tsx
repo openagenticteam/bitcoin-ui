@@ -65,6 +65,7 @@ export const Secret: React.FC<SecretProps> = ({
         <span
           id={`secret-description-${ariaDescriptionLabel}`}
           className="btc-sr-only"
+          aria-live="polite"
         >
           {revealed ? `${label}: ${secret}` : `${label} (hidden)`}
         </span>

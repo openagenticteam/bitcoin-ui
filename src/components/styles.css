@@ -720,6 +720,7 @@
   color: var(--btc-gray-300);
   margin-top: var(--btc-space-2);
   font-style: italic;
+  text-align: center;
 }
 
 /* === Mobile Responsive Styles for QR Code === */

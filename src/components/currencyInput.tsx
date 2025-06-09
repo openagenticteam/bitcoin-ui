@@ -112,6 +112,7 @@ export const CurrencyInput = forwardRef<HTMLInputElement, CurrencyInputProps>(
           <label
             className="btc-sr-only"
             htmlFor={`currency-input-${currency}`}
+            aria-live="polite"
           >
             {label}
           </label>
@@ -140,6 +141,7 @@ export const CurrencyInput = forwardRef<HTMLInputElement, CurrencyInputProps>(
           <span
             id={`currency-description-${ariaDescriptionLabel}`}
             className="btc-sr-only"
+            aria-live="polite"
           >
             {label}
             {" "}

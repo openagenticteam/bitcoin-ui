@@ -68,14 +68,16 @@ export const ExpandableText: React.FC<ExpandableTextProps> = ({
           {displayText}
         </div>
 
-        <span
+        {/* Screen reader only description - moved to end to prevent visual interference */}
+        <div
           id={`expandable-description-${ariaDescriptionLabel}`}
           className="btc-sr-only"
+          aria-live="polite"
         >
           {label}
           :
           {isExpanded ? text : displayText}
-        </span>
+        </div>
 
         {shouldTruncate && (
           <button

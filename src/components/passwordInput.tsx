@@ -40,6 +40,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
           <span
             id={`password-description-${ariaDescriptionLabel}`}
             className="btc-sr-only"
+            aria-live="polite"
           >
             {label}
             {" "}
