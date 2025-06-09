@@ -1,10 +1,11 @@
 "use client"
 
 import React, { useState } from "react"
+import { CopyToClipboard } from "react-copy-to-clipboard-ts"
 
 import { CheckIcon, CopyIcon, EyeNoneIcon, EyeOpenIcon } from "./icons"
-import { copyToClipboard, showToast } from "./utils"
 import "./styles.css"
+import { showToast } from "./utils"
 
 export interface SecretProps {
   secret: string
@@ -30,10 +31,8 @@ export const Secret: React.FC<SecretProps> = ({
 
   const value = revealed ? secret : maskCharacter.repeat(21)
 
-  const handleCopy = async () => {
-    const success = await copyToClipboard(secret)
-
-    if (success) {
+  const handleCopy = async (_text: string, result: boolean) => {
+    if (result) {
       setIsCopied(true)
       showToast(`${label} copied to clipboard`)
 
@@ -86,15 +85,16 @@ export const Secret: React.FC<SecretProps> = ({
         </button>
 
         {showCopyButton && (
-          <button
-            type="button"
-            onClick={handleCopy}
-            aria-label={`Copy ${label}`}
-            className="btc-button btc-focus"
-            data-testid="copy-button"
-          >
-            {isCopied ? <CheckIcon /> : <CopyIcon />}
-          </button>
+          <CopyToClipboard text={secret} onCopy={handleCopy}>
+            <button
+              type="button"
+              aria-label={`Copy ${label}`}
+              className="btc-button btc-focus"
+              data-testid="copy-button"
+            >
+              {isCopied ? <CheckIcon /> : <CopyIcon />}
+            </button>
+          </CopyToClipboard>
         )}
       </div>
     </div>

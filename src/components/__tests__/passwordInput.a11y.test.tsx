@@ -2,17 +2,17 @@ import { cleanup, render } from "@testing-library/react"
 import { axe, toHaveNoViolations } from "jest-axe"
 import React from "react"
 
-import { QRCode } from "../qr"
+import { PasswordInput } from "../passwordInput"
 
 expect.extend(toHaveNoViolations)
 
-describe("qrCode accessibility", () => {
+describe("passwordInput accessibility", () => {
   it("should have no a11y violations", async () => {
     const { container } = render(
-      <QRCode
-        value="bitcoin:bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh"
-        label="Bitcoin Address QR"
-      />,
+      <div>
+        <label htmlFor="test-password">Password</label>
+        <PasswordInput id="test-password" label="Password" placeholder="Enter value" />
+      </div>,
     )
     const results = await axe(container)
     expect(results).toHaveNoViolations()

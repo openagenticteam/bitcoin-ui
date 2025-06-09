@@ -1,16 +1,18 @@
-"use client";
+"use client"
 
+import type {
+  ButtonProps as RawButtonProps,
+} from "@radix-ui/themes"
 import {
   Button as RawButton,
-  ButtonProps as RawButtonProps,
-} from "@radix-ui/themes";
+} from "@radix-ui/themes"
 
-import "./styles.css";
+import "./styles.css"
 
 interface ButtonProps extends RawButtonProps {
-  label: string;
+  label: string
 }
 
 export const Button = ({ label, ...rest }: ButtonProps) => {
-  return <RawButton aria-label={label} {...rest} />;
-};
+  return <RawButton aria-label={label} {...rest} />
+}

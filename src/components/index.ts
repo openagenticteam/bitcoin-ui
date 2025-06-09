@@ -24,7 +24,6 @@ export type { Currency, Locale, ToastOptions } from "./utils"
 export {
   clsx,
   cn,
-  copyToClipboard,
   formatCurrencyValue,
   isValidAmount,
   pasteFromClipboard,

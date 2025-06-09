@@ -1,33 +1,4 @@
 // === Clipboard Utilities ===
-export async function copyToClipboard(text: string): Promise<boolean> {
-  try {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      await navigator.clipboard.writeText(text)
-      return true
-    }
-
-    // Fallback for older browsers
-    const textArea = document.createElement("textarea")
-    textArea.value = text
-    textArea.style.position = "absolute"
-    textArea.style.left = "-999999px"
-    document.body.appendChild(textArea)
-    textArea.focus()
-    textArea.select()
-
-    try {
-      const success = document.execCommand("copy")
-      document.body.removeChild(textArea)
-      return success
-    } catch {
-      document.body.removeChild(textArea)
-      return false
-    }
-  } catch {
-    return false
-  }
-}
-
 export async function pasteFromClipboard(): Promise<string> {
   try {
     if (navigator.clipboard && navigator.clipboard.readText) {

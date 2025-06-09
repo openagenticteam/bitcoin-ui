@@ -75,10 +75,16 @@ export const CurrencyInput = forwardRef<HTMLInputElement, CurrencyInputProps>(
         "",
       )
 
+      // Prevent leading zeros (e.g., 0100 -> should be 100)
+      if (/^0\d+$/.test(rawInput)) {
+        return
+      }
+
       // Basic validation
       if (
         rawInput !== ""
         && !isValidAmount(rawInput, currency)
+        // eslint-disable-next-line regexp/no-unused-capturing-group
         && !/^(\d+\.)?$/.test(rawInput)
       ) {
         return

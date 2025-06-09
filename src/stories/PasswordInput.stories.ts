@@ -57,6 +57,7 @@ export const WithValue: Story = {
     label: "Password",
     value: "mypassword123",
     placeholder: "Enter password",
+    onChange: () => {},
   },
 }
 
@@ -66,6 +67,7 @@ export const Disabled: Story = {
     placeholder: "Cannot edit",
     disabled: true,
     value: "disabled",
+    onChange: () => {},
   },
 }
 

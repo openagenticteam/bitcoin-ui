@@ -1,9 +1,12 @@
-import React from "react";
-import { render } from "@testing-library/react";
-import { axe } from "jest-axe";
-import { CurrencyInput } from "../currencyInput";
+import { cleanup, render } from "@testing-library/react"
+import { axe, toHaveNoViolations } from "jest-axe"
+import React from "react"
 
-describe("Input accessibility", () => {
+import { CurrencyInput } from "../currencyInput"
+
+expect.extend(toHaveNoViolations)
+
+describe("currencyInput accessibility", () => {
   it("should have no a11y violations", async () => {
     const { container } = render(
       <CurrencyInput
@@ -11,10 +14,11 @@ describe("Input accessibility", () => {
         placeholder="Enter value"
         currency="BTC"
         locale="US"
-      />
-    );
-    const results = await axe(container);
-    expect(results).toHaveNoViolations();
-    expect(results.incomplete).toHaveLength(0);
-  });
-});
+      />,
+    )
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
+    expect(results.incomplete).toHaveLength(0)
+    cleanup()
+  })
+})

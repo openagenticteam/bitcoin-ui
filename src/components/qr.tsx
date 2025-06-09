@@ -2,9 +2,10 @@
 
 import { QRCodeSVG } from "qrcode.react"
 import React, { useEffect, useState } from "react"
+import { CopyToClipboard } from "react-copy-to-clipboard-ts"
 
-import { copyToClipboard, showToast } from "./utils"
 import "./styles.css"
+import { showToast } from "./utils"
 
 export interface QRCodeProps {
   value: string
@@ -33,10 +34,8 @@ export const QRCode: React.FC<QRCodeProps> = ({
     setIsCopied(false)
   }, [value])
 
-  const handleCopy = async () => {
-    const success = await copyToClipboard(value)
-
-    if (success) {
+  const handleCopy = async (_text: string, result: boolean) => {
+    if (result) {
       setIsCopied(true)
       showToast(`${label} copied to clipboard`)
 
@@ -62,23 +61,24 @@ export const QRCode: React.FC<QRCodeProps> = ({
       )}
 
       <div className="btc-qr__container">
-        <button
-          type="button"
-          onClick={handleCopy}
-          className="btc-qr__button btc-focus"
-          aria-label={`Click to copy ${label}`}
-          aria-describedby={description ? `${label}-description` : undefined}
-          data-testid="qr-button"
-        >
-          <QRCodeSVG
-            value={value}
-            size={size}
-            level={errorCorrectionLevel}
-            includeMargin={true}
-            aria-hidden="true"
-            className="btc-qr__svg"
-          />
-        </button>
+        <CopyToClipboard text={value} onCopy={handleCopy}>
+          <button
+            type="button"
+            className="btc-qr__button btc-focus"
+            aria-label={`Click to copy ${label}`}
+            aria-describedby={description ? `${label}-description` : undefined}
+            data-testid="qr-button"
+          >
+            <QRCodeSVG
+              value={value}
+              size={size}
+              level={errorCorrectionLevel}
+              includeMargin={true}
+              aria-hidden="true"
+              className="btc-qr__svg"
+            />
+          </button>
+        </CopyToClipboard>
 
         <p className="btc-qr__label">
           {isCopied

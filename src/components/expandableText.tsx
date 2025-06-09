@@ -1,9 +1,10 @@
 "use client"
 
 import React, { useState } from "react"
+import { CopyToClipboard } from "react-copy-to-clipboard-ts"
 
 import { CheckIcon, CopyIcon } from "./icons"
-import { copyToClipboard, showToast, truncateText } from "./utils"
+import { showToast, truncateText } from "./utils"
 import "./styles.css"
 
 export interface ExpandableTextProps {
@@ -32,10 +33,8 @@ export const ExpandableText: React.FC<ExpandableTextProps> = ({
   const [isCopied, setIsCopied] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
 
-  const handleCopy = async () => {
-    const success = await copyToClipboard(text)
-
-    if (success) {
+  const handleCopy = async (_text: string, result: boolean) => {
+    if (result) {
       setIsCopied(true)
       showToast(`${label} copied to clipboard`)
 
@@ -96,15 +95,16 @@ export const ExpandableText: React.FC<ExpandableTextProps> = ({
 
       {showCopyButton && (
         <div className="btc-expandable__copy">
-          <button
-            type="button"
-            className="btc-button btc-focus"
-            onClick={handleCopy}
-            aria-label={`Copy ${label}`}
-            data-testid="copy-button"
-          >
-            {isCopied ? <CheckIcon /> : <CopyIcon />}
-          </button>
+          <CopyToClipboard text={text} onCopy={handleCopy}>
+            <button
+              type="button"
+              className="btc-button btc-focus"
+              aria-label={`Copy ${label}`}
+              data-testid="copy-button"
+            >
+              {isCopied ? <CheckIcon /> : <CopyIcon />}
+            </button>
+          </CopyToClipboard>
         </div>
       )}
     </div>

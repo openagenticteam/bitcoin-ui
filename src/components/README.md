@@ -326,14 +326,10 @@ showToast('Copied!', { duration: 5000 });
 
 ```tsx
 import { 
-  copyToClipboard, 
   truncateText, 
   isValidAmount,
   formatCurrencyValue 
 } from '@bitcoin-ui/components';
-
-// Copy to clipboard
-const success = await copyToClipboard('text to copy');
 
 // Truncate long text
 const short = truncateText('very long text here', 10, 5);
