@@ -1,9 +1,9 @@
 <div align="center">
   <img src="logo/btc-ui.png" alt="Bitcoin UI" width="200" height="200" />
   
-  # Bitcoin UI Components
+  # Bitcoin UI
 
-  Modern, accessible React component library for Bitcoin applications. Built with TypeScript, featuring beautiful default styling with Inter font, and designed following the [Bitcoin Design Guide](https://bitcoin.design/guide/) and [Bitcoin Universal Design Accessibility Standards](https://jason-me.github.io/bitcoin-universal-design/).
+  Modern, accessible React component library for Bitcoin applications. Built with TypeScript and designed following the [Bitcoin Design Guide](https://bitcoin.design/guide/) and [Bitcoin Universal Design Accessibility Standards](https://jason-me.github.io/bitcoin-universal-design/).
 
   [![npm version](https://img.shields.io/npm/v/bitcoin-ui.svg)](https://www.npmjs.com/package/bitcoin-ui)
   [![Tests](https://img.shields.io/badge/tests-64%20passing-brightgreen)](src/__tests__)
@@ -17,7 +17,7 @@
 
 ## ✨ Features
 
-- 🎨 **Beautiful by Default** - Clean, modern styling with Inter font
+- 🎨 **Beautiful by Default** - Clean, modern styling
 - ♿ **Fully Accessible** - WCAG 2.1 AA compliant with screen reader support
 - 🎯 **Minimal Dependencies** - Only requires React, Radix UI, react-copy-to-clipboard-ts, and qrcode.react
 - 🌙 **Dark Mode Ready** - Automatic dark mode support via CSS custom properties
@@ -213,7 +213,7 @@ Locale-aware currency input with real-time formatting and validation.
 
 ## 🎨 Styling & Customization
 
-All components are flexible by default and come with beautiful styling using Inter font and modern design tokens.
+All components are flexible by default and come with beautiful styling using modern design tokens.
 
 ### Default Styling
 
@@ -379,11 +379,10 @@ All components are designed mobile-first with:
 
 When handling sensitive Bitcoin data:
 
-1. **Use HTTPS** - Always serve over secure connections
-2. **Clear sensitive data** - Clear form values when appropriate
-3. **Validate inputs** - Use provided validation utilities
-4. **Secure clipboard** - Components handle clipboard securely
-5. **Screen recording protection** - Consider `user-select: none` for sensitive data
+1. **Clear sensitive data** - Clear form values when appropriate
+2. **Validate inputs** - Use provided validation utilities
+3. **Secure clipboard** - Components handle clipboard securely
+4. **Screen recording protection** - Consider `user-select: none` for sensitive data
 
 ## 🧪 Development
 
@@ -431,9 +430,10 @@ pnpm dev
 ```
 
 ### Viewing Components
-The best way to explore and test components is through our live website:
+The best way to explore and test components is through our live website and storybook:
 
 **🌐 [Visit bitcoinui.org →](https://bitcoinui.org/)**
+**📚 [Visit Storybook →](https://bitcoin-ui-kit.github.io/bitcoin-ui)**
 
 For local development with Storybook:
 
