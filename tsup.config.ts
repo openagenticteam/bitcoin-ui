@@ -11,9 +11,9 @@ export default defineConfig({
   minify: true,
   external: ["react", "react-dom", "qrcode.react"],
   banner: {
-    js: '"use client";',
+    js: "use client;",
   },
   esbuildOptions(options) {
-    options.jsx = 'automatic'
+    options.jsx = "automatic"
   },
 })
