@@ -8,10 +8,11 @@
   [![npm version](https://img.shields.io/npm/v/bitcoin-ui.svg)](https://www.npmjs.com/package/bitcoin-ui)
   [![Tests](https://img.shields.io/badge/tests-64%20passing-brightgreen)](src/__tests__)
   [![Components](https://img.shields.io/badge/components-5-blue)](#-components)
-  [![Storybook](https://img.shields.io/badge/storybook-live-ff4785)](https://bitcoin-ui.github.io/bitcoin-ui)
+  [![Storybook](https://img.shields.io/badge/storybook-live-ff4785)](https://bitcoin-ui-kit.github.io/bitcoin-ui)
   [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
   **🌐 [Live Website & Documentation →](https://bitcoinui.org/)**
+  **📚 [Live Storybook →](https://bitcoin-ui-kit.github.io/bitcoin-ui)**
 </div>
 
 ## ✨ Features
