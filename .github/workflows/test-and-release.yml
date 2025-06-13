@@ -1,5 +1,10 @@
 name: Test and Release
 
+permissions:
+  contents: read
+  pull-requests: write
+  packages: write
+
 env:
   MAIN_REF: refs/heads/main
 
